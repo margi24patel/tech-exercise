@@ -23,17 +23,25 @@ function sortCategoriesForInsert(inputJson) {
   }, {});
 
   let root;
+  let arr = [];
   inputJson.forEach((ele) => {
     if (ele.parent_id === null) {
       root = ele;
+      arr.push(root);
+      // console.log("ROOT", root)
       return;
     }
     const parentEle = inputJson[idMapping[ele.parent_id]];
-
-    parentEle.children = [...(parentEle.children || []), ele];
+    // console.log("PARENT", parentEle);
+    // console.log("ELEMENT", ele);
+    arr.push(parentEle, ele);
   });
 
-  //console.log("ROOT", root);
+  const properJsonOutput = arr.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
+  // console.log("PROPERJSONOP", properJsonOutput);
+  return properJsonOutput;
 }
 
 module.exports = sortCategoriesForInsert(categories);
