@@ -1,19 +1,19 @@
 const categories = [
   {
-    name: "Accessories",
-    id: 1,
-    parent_id: 20,
+    "name": "Accessories",
+    "id": 1,
+    "parent_id": 20,
   },
   {
-    name: "Watches",
-    id: 57,
-    parent_id: 1,
+    "name": "Watches",
+    "id": 57,
+    "parent_id": 1
   },
   {
-    name: "Men",
-    id: 20,
-    parent_id: null,
-  },
+    "name": "Men",
+    "id": 20,
+    "parent_id": null,
+  }
 ];
 
 function sortCategoriesForInsert(inputJson) {
@@ -40,8 +40,8 @@ function sortCategoriesForInsert(inputJson) {
   const properJsonOutput = arr.filter((value, index, self) => {
     return self.indexOf(value) === index;
   });
-  // console.log("PROPERJSONOP", properJsonOutput);
-  return properJsonOutput;
+  // console.log(JSON.stringify(properJsonOutput, null, 2));
+  return JSON.stringify(properJsonOutput, null, 2);
 }
 
 module.exports = sortCategoriesForInsert(categories);
